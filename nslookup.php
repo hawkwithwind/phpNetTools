@@ -6,7 +6,11 @@
 
 <BODY>
 <?php
-$server = $_GET["server"];
+$server = trim($_GET["server"]);
+if(preg_match("/.*[|&>\s-].*/i",$server) != 0){
+   $server = "";
+   echo "<h2>unacceptable characters in host name</h2>";
+}
 $nonapi = $_GET["nonapi"];
 $command = "nslookup ".$server;
 if($nonapi != "true" && $server!="")
@@ -41,7 +45,7 @@ echo "<font color=red size=1 />...</font><br />";
 echo "<HR noshade size=1 /><br />";
 } else {
 if($server =="") {
-echo "<H2>input url</H2>";
+echo "<H2>input host name here</H2>";
 }
 ?>
 <FORM method='GET' action='nslookup.php' name='q'>
