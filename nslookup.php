@@ -7,7 +7,7 @@
 <BODY>
 <?php
 $server = trim($_GET["server"]);
-if(preg_match("/.*[|&>\s-].*/i",$server) != 0){
+if(preg_match("/.*[|&>\s-;\{\}$:].*/i",$server) != 0){
    $server = "";
    echo "<h2>unacceptable characters in host name</h2>";
 }
